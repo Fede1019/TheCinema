@@ -1,0 +1,105 @@
+<html>
+
+	<body>
+	<style>
+	
+		input[type=text], select {
+		    width: 50%;
+		    padding: 12px 20px;
+			margin: 8px 0;
+			 display: inline-block;
+			border: 1px solid #ccc;
+			 border-radius: 4px;
+		     box-sizing: border-box;
+		}
+		input[type=text] {
+		    width: 50%;
+		    padding: 12px 20px;
+			margin: 8px 0;
+			 display: inline-block;
+			border: 1px solid #ccc;
+			 border-radius: 4px;
+		     box-sizing: border-box;
+			 
+		}
+
+		input[type=submit] {
+		  width: 50%;
+		  background-color: #4CAF50;
+		  color: white;
+		  padding: 14px 20px;
+		  margin: 8px 0;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+		  background-color: #45a049;
+		}
+
+		div {
+		  border-radius: 5px;
+		  background-color: #f2f2f2;
+		  padding: 20px;
+		  
+		  width: 500px;
+		}
+		
+	
+	</style>
+	
+		
+	<form action="InserimentoNelDB.php" method="Post">
+	<div>
+		<input type="text" name="userName" placeholder="Inserrisci il tuo username " >
+		<input type="text" name="nome" placeholder="Inserisci il nome*" ><br>
+		<input type="text" name="cognome" placeholder="Inserisci il cognome*" ><br>
+		
+		<p> Indica la tua nazionalità : </p>
+		<?php
+			$nomeFile="Nazionalità.txt";
+			$myfile = fopen($nomeFile, "r") or die("Unable to open file!");
+						$contenuto=fgets($myfile);
+						$arr=array();
+						$arr=explode("-",$contenuto);
+						sort($arr);  //ordino le nazionalità
+						$dim= count($arr);
+				
+						$msg="";
+						$msg.="<select name=\"nazionalità\"";
+				for($i=0;$i<$dim;$i++){
+						$msg.="<option  value=\"$arr[$i]\" >$arr[$i] </option>";
+				}
+				$msg.="</select>";
+				
+				$msg.="<br>";
+				$data = date("Y-m-d");
+				$msg.="<br>Inserisci la tua data di nascita<br><input type=\"date\"  name=\"dataNascitastart\" value=\"$data\" min=\"1950-01-01\" max=\"$data\" placeholder=\"Inserisci la tua data di nascita\" ></input><br>";
+
+				echo $msg;
+		?>
+			<br>Inserisci il tuo sesso<br>
+			<input type="checkbox" name="sesso" value="uomo">Uomo<br>
+								<input type="checkbox" name="sesso" value="donna" >Donna<br>
+								<input type="text" name="altro" placeholder="altro" ><br>
+								<input type="text" name="numeroTelefono" placeholder="Inserisci il tuo numero di telefono" ><br>
+								<input type="text" name="via" placeholder="Inserisci la tua via" >
+								<input type="text" name="cap" placeholder="Inserisci il cap" >
+								<input type="text" name="città" placeholder="Inserisci la città " >
+								<input type="text" name="email" placeholder="Inserrisci l'email  " ><input type="text" name="emailConferma" placeholder="Conferma l'email " >
+								<input type="text" name="psw1" placeholder="Inserrisci la password " ><input type="text" name="pswConferma" placeholder="Conferma la password " >
+								
+								
+
+								
+			<input type="submit"  value="Invia"  ></input>
+				</form>
+						
+					
+		</div>
+	
+	</body>
+
+
+</html>
